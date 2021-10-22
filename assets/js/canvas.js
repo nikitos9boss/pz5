@@ -72,7 +72,8 @@ const toolBar = document.getElementById('toolbar')
 // clear button
 const clearBtn = document.createElement('button')
 clearBtn.classList.add('btn')
-clearBtn.textContent = 'Clear'
+clearBtn.innerHTML = '<i class="fas fa-eraser"></i>'
+//clearBtn.textContent = 'Clear'
 
 clearBtn.addEventListener('click', () => {
 // тут необхідно додати код очистки canvas та масиву точок (clearRect)
@@ -98,5 +99,59 @@ toolBar.insertAdjacentElement('afterbegin', clearBtn)
     localStorage.setItem('points', JSON.stringify(points));
     })
     toolBar.insertAdjacentElement('afterbegin', saveBtn)
- }
+
+    const restoreBtn = document.createElement('button');
+    restoreBtn.classList.add('restoreBtn')
+    restoreBtn.textContent = 'restore'
+    restoreBtn.addEventListener('click', () => {
+    const raw = localStorage.getItem('points')
+    points = JSON.parse(raw)
+    redraw();
+
+    })
+    toolBar.insertAdjacentElement('afterbegin', restoreBtn)
+
+    const timeStampBtn = document.createElement('button');
+    timeStampBtn.classList.add('timeStampBtn')
+    timeStampBtn.textContent = 'timeStamp'
+    timeStampBtn.addEventListener('click', () => {
+    //raw.stringify
+    context.fillText(new Date(), 50, 100);
+
+    })
+    toolBar.insertAdjacentElement('afterbegin', timeStampBtn)
+    
+    const brushColorBtn = document.createElement('button');
+    brushColorBtn.classList.add('brushColorBtn')
+    brushColorBtn.textContent = 'brushColor'
+    brushColorBtn.addEventListener('click', () => {
+    var context = canvas.getContext("2d");
+    context.strokeStyle = 'id = "color - picker"'
+
+    })
+    toolBar.insertAdjacentElement('afterbegin', brushColorBtn)
+
+    const brushSizeBtn = document.createElement('button');
+    brushSizeBtn.classList.add('brushSizeBtn')
+    brushSizeBtn.textContent = 'brushSize'
+    brushSizeBtn.addEventListener('click', () => {
+    var context = canvas.getContext("2d");
+    context.strokeStyle = 'id = "color - picker"'
+    })
+
+    toolBar.insertAdjacentElement('afterbegin',  brushSizeBtn)
+
+    const backgroundBtn = document.createElement('button');
+    backgroundBtn.classList.add('backgroundBtn')
+    backgroundBtn.textContent = 'background'
+    backgroundBtn.addEventListener('click', () => {
+        const img = new Image;
+        img.src =`https://www.fillmurray.com/200/300)`;
+        img.onload = () => {
+        context.drawImage(img, 0, 0);
+        }
+    })
+    toolBar.insertAdjacentElement('afterbegin', backgroundBtn)
+}
+ 
  

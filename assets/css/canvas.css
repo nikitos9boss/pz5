@@ -1,7 +1,7 @@
 .canvas{
     background: #eee;
  }
- .btn, .downloadBtn, .saveBtn{
+ .btn, .downloadBtn, .saveBtn, .restoreBtn, .timeStampBtn, .brushColorBtn, .brushSizeBtn,.backgroundBtn{
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;
