@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>slider</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/layout.css"><link>
+    <link rel="stylesheet" href="assets/css/style.css" ><link>
+    <script>
+        window.onload = function() {
+            // ви можете зробити скільки завгодно слайдів
+            let slides = [
+                {
+                    title: "summer",
+                    background: "assets/img/summer.jpg",
+                    link: "https://unsplash.com/images/nature/summer"
+                },
+                {
+                    title: "autumn",
+                    background: "assets/img/autumn.jpg",
+                    link: "https://unsplash.com/wallpapers/nature/autumn"
+                },
+                {
+                    title: "winter",
+                    background: "assets/img/winter.jpg",
+                    link: "https://unsplash.com/images/nature/winter"
+                }
+            ]
+            Slider.initSlider(slides);
+        };
+     </script>
+</head>
+<body>
+    <header class="header"><img src="assets/img/phone.png" alt=""><p>slider</p></header>
+    <div class="container">
+        <main class="center column">
+            <article>
+                <div class="slider" id="slider"></div>
+                <div class="btn-bar">
+                    <button class="prevBtn slider-control-left"><i class="fa fa-angle-left"></i></button>
+                    <button class="showBtn"><i class="fa fa-eye" style="font-size:2rem"></i></button>
+                    <button class="hideBtn"><i class="fa fa-eye-slash" style="font-size:2rem"></i></button>
+                    <button class="slideShow">auto</button>
+                    <button class="nextBtn slider-control-right"><i class="fa fa-angle-right"></i></button> 
+                </div>
+        </article>
+    </main>
+    <nav class="left column">
+        <h3>Menu</h3>
+        <ul>
+            <li><a href="table.html">table</a></li>
+            <li><a href="contact.html">contact</a></li>
+            <li><a href="index.html">index</a></li>
+            <li><a href="about.html">about</a></li>
+            <li><a href="media.html">media</a></li>
+            <li><a href="canvas.html">canvas</a></li>
+        </ul>
+    </nav>
+    <div class="right column">
+        <h3>Right heading</h3>
+        <p></p>
+    </div>
+    <div class="push"></div>
+</div>
+<div class="footer-wrapper">
+    <footer class="footer"><img src="assets/img/phone.png" alt=""><p>Footer...</p></footer>
+</div>
+<script src="assets/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>canvas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/layout.css"><link>
+    <link rel="stylesheet" href="assets/css/canvas.css" ><link>
+    <script>
+        window.onload = function() {canvas('#draw', {
+        width: 500,
+        height: 300,
+        strokeWidth: 5,
+        strokeColor: "#df4b26"
+        
+    })
+    }
+            
+     </script>
+</head>
+<body>
+    <header class="header"><img src="assets/img/phone.png" alt=""><p>canvas</p></header>
+    <div class="container">
+        <main class="center column">
+            <article>
+                <h1>Canvas</h1>
+                <canvas id="draw"></canvas>
+                <div class="toolbar" id="toolbar"></div>         
+                <div class="slider" id="slider"></div>
+        </article>
+    </main>
+    <nav class="left column">
+        <h3>Menu</h3>
+        <ul>
+            <li><a href="table.html">table</a></li>
+            <li><a href="contact.html">contact</a></li>
+            <li><a href="index.html">index</a></li>
+            <li><a href="about.html">about</a></li>
+            <li><a href="media.html">media</a></li>
+            <li><a href="slider.html">slider</a></li>
+        </ul>
+    </nav>
+    <div class="right column">
+        <h3>Right heading</h3>
+        <p></p>
+    </div>
+    <div class="push"></div>
+</div>
+<div class="footer-wrapper">
+    <footer class="footer"><img src="assets/img/phone.png" alt=""><p>Footer...</p></footer>
+</div>
+<script src="assets/js/canvas.js"></script>
+</body>
+</html>
