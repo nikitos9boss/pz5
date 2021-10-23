@@ -18,7 +18,9 @@ function canvas(selector, options){
        points.push({
            x: (x - rect.left),
            y: (y - rect.top),
-           dragging: dragging
+           dragging: dragging,
+           color : options.strokeColor,
+           size : options.strokeWidth
        })
     }
      // головна функція для малювання
@@ -26,11 +28,14 @@ function canvas(selector, options){
     //очищуємо  canvas
     context.clearRect(0, 0, context.canvas.width, context.canvas.height);
  
-    context.strokeStyle = options.strokeColor;
+    //context.strokeStyle = options.strokeColor;
+    
     context.lineJoin = "round";
-    context.lineWidth = options.strokeWidth;
+    //context.lineWidth = options.strokeWidth;
     let prevPoint = null;
     for (let point of points){
+        context.strokeStyle = point.color;
+        context.lineWidth = point.size;
         context.beginPath();
         if (point.dragging && prevPoint){
             context.moveTo(prevPoint.x, prevPoint.y)
@@ -84,7 +89,8 @@ toolBar.insertAdjacentElement('afterbegin', clearBtn)
 
    const downloadBtn = document.createElement('button');
    downloadBtn.classList.add('downloadBtn')
-   downloadBtn.textContent = 'Download'
+   downloadBtn.innerHTML = '<i class="fas fa-file-export"></i>'
+   //downloadBtn.textContent = 'Download'
    downloadBtn.addEventListener('click', () => {
     const dataUrl = canvas.toDataURL("image/png").replace(/^data:image\/[^;]/, 'data:application/octet-stream');
     const newTab = window.open('about:blank','image from canvas');
@@ -94,7 +100,8 @@ toolBar.insertAdjacentElement('afterbegin', clearBtn)
 
     const saveBtn = document.createElement('button');
    saveBtn.classList.add('saveBtn')
-   saveBtn.textContent = 'Save'
+    saveBtn.innerHTML = '<i class="far fa-save"></i>'
+   //saveBtn.textContent = 'Save'
    saveBtn.addEventListener('click', () => {
     localStorage.setItem('points', JSON.stringify(points));
     })
@@ -102,7 +109,8 @@ toolBar.insertAdjacentElement('afterbegin', clearBtn)
 
     const restoreBtn = document.createElement('button');
     restoreBtn.classList.add('restoreBtn')
-    restoreBtn.textContent = 'restore'
+    restoreBtn.innerHTML = '<i class="far fa-window-restore"></i>'
+    //restoreBtn.textContent = 'restore'
     restoreBtn.addEventListener('click', () => {
     const raw = localStorage.getItem('points')
     points = JSON.parse(raw)
@@ -113,7 +121,8 @@ toolBar.insertAdjacentElement('afterbegin', clearBtn)
 
     const timeStampBtn = document.createElement('button');
     timeStampBtn.classList.add('timeStampBtn')
-    timeStampBtn.textContent = 'timeStamp'
+    timeStampBtn.innerHTML = '<i class="far fa-calendar-times"></i>'
+    //timeStampBtn.textContent = 'timeStamp'
     timeStampBtn.addEventListener('click', () => {
     //raw.stringify
     context.fillText(new Date(), 50, 100);
@@ -123,7 +132,8 @@ toolBar.insertAdjacentElement('afterbegin', clearBtn)
     
     const brushColorBtn = document.createElement('button');
     brushColorBtn.classList.add('brushColorBtn')
-    brushColorBtn.textContent = 'brushColor'
+    brushColorBtn.innerHTML = '<i class="fas fa-paint-brush"></i>'
+    //brushColorBtn.textContent = 'brushColor'
     brushColorBtn.addEventListener('click', () => {
     var context = canvas.getContext("2d");
     context.strokeStyle = 'id = "color - picker"'
@@ -131,9 +141,17 @@ toolBar.insertAdjacentElement('afterbegin', clearBtn)
     })
     toolBar.insertAdjacentElement('afterbegin', brushColorBtn)
 
+    const sizeEl = document.createElement('input');
+    sizeEl.classList.add('sizeEl')
+    sizeEl.addEventListener("change",() =>{
+        options.strokeWidth = sizeEl.value
+    })
+    toolBar.insertAdjacentElement('afterbegin',  sizeEl)
+
     const brushSizeBtn = document.createElement('button');
     brushSizeBtn.classList.add('brushSizeBtn')
-    brushSizeBtn.textContent = 'brushSize'
+    brushSizeBtn.innerHTML = '<i class="fas fa-text-size"></i>'
+    //brushSizeBtn.textContent = 'brushSize'
     brushSizeBtn.addEventListener('click', () => {
     var context = canvas.getContext("2d");
     context.strokeStyle = 'id = "color - picker"'
@@ -143,7 +161,8 @@ toolBar.insertAdjacentElement('afterbegin', clearBtn)
 
     const backgroundBtn = document.createElement('button');
     backgroundBtn.classList.add('backgroundBtn')
-    backgroundBtn.textContent = 'background'
+    backgroundBtn.innerHTML = '<i class="fas fa-images"></i>'
+    //backgroundBtn.textContent = 'background'
     backgroundBtn.addEventListener('click', () => {
         const img = new Image;
         img.src =`https://www.fillmurray.com/200/300)`;
@@ -152,6 +171,11 @@ toolBar.insertAdjacentElement('afterbegin', clearBtn)
         }
     })
     toolBar.insertAdjacentElement('afterbegin', backgroundBtn)
+
+    const colorEl = document.getElementById("color")
+    colorEl.addEventListener("change", () =>{
+        options.strokeColor = colorEl.value
+    } )
 }
  
  
